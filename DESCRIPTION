@@ -1,0 +1,25 @@
+Package: kwb.orcid
+Version: 0.1.0.9000
+Title: R Package for Checking Orcid Use at KWB
+Description: R package for checking ORCID use at KWB. It is a wrapper for the
+ R package rorcid (https://github.com/ropencsci/rorcid).
+Authors@R: c(person("Michael", "Rustler", , "michael.rustler@kompetenz-wasser.de",
+           role = c("aut", "cre"), comment = c(ORCID = "0000-0003-0647-7726")),
+           person("Kompetenzzentrum Wasser Berlin gGmbH (KWB)", role = c("cph")))
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+URL: https://github.com/KWB-R/kwb.orcid
+BugReports: https://github.com/KWB-R/kwb.orcid/issues
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
+Imports: 
+    data.table,
+    dplyr,
+    rorcid
+Remotes:
+    github::ropensci/rorcid

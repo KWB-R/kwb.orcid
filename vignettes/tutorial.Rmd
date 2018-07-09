@@ -1,0 +1,109 @@
+---
+title: "Tutorial"
+author: "Michael Rustler"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+```{r eval = TRUE, echo=FALSE, warning=FALSE, message=FALSE}
+
+secret_paths <- c("secret.csv")
+exist_secret_paths <- file.exists(secret_paths)
+secret_path <- NA
+
+if(any(exist_secret_paths)) {
+  secret_path <- secret_paths[exist_secret_paths]
+  
+Sys.setenv("orcid_token" = as.character(read.csv(secret_path,
+                                                 stringsAsFactors = FALSE)))
+}
+```
+# 1 Install R Packages
+
+First you need to install the following required R packages:
+
+```{r, eval = FALSE}
+installed_packages <- rownames(installed.packages())
+
+### For installing an R package from Github
+if(!"devtools" %in% installed_packages) {
+  install.packages("devtools", repos = "https://cloud.r-project.org")
+}
+### R package for checking ORCID use at KWB
+if(!"kwb.orcid" %in% installed_packages) {
+  devtools::install_github("KWB-R/kwb.orcid")
+}
+
+```
+
+# 2 Check ORCID Use
+
+## 2.1 Authenticate 
+
+Either check in interactively with `rorcid::orcid_auth()` (opens) or provide a valid 
+`orcid_token` 
+
+```{r, echo=TRUE,eval = FALSE}
+### If no "orcid_token" is specified in: 
+### Sys.setenv("orcid_token" = "my_secret_orcid_token")
+### it opens up the web browser for login to ORCID in order to create a 
+### authentication token
+rorcid::orcid_auth()
+
+### After finishing this step the token is printed to the console, e.g.
+> "Bearer my_secret_orcid_token"
+
+
+
+### To make this token available in the next R session make sure to set the
+### token via Sys.setenv() as shown below
+Sys.setenv("orcid_token" = "my_secret_orcid_token")
+
+
+```
+
+```{r}
+if(!is.na(secret_path)){
+  knitr::opts_chunk$set(eval=TRUE, message=FALSE, echo=TRUE)
+} else {
+ knitr::opts_chunk$set(eval=FALSE, message=FALSE, echo=TRUE)
+}
+```
+
+
+## 2.2 Get names and url for all ORCIDs 
+```{r}
+
+### Data frame with ORCIDs currently used at KWB
+orcids <- data.frame(
+  names = c("Matzinger, Andreas", "Sonnenberg, Hauke", "Rustler, Michael"),
+  id = c("0000-0001-5483-4594", "0000-0001-9134-2871", "0000-0003-0647-7726"),
+  stringsAsFactors =  FALSE)
+
+authors <- kwb.orcid::get_author_meta_for_orcids(orcids$id)
+```
+
+```{r, echo = FALSE}
+knitr::kable(authors)
+```
+
+## 2.3 Get publications for all ORCIDs 
+```{r}
+publications <- kwb.orcid::create_publications_df_for_orcids(orcids$id)
+head(publications)
+```
+
+```{r, echo = FALSE}
+knitr::kable(publications)
+```
+
