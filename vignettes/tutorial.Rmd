@@ -72,7 +72,7 @@ Sys.setenv("orcid_token" = "my_secret_orcid_token")
 
 ```
 
-```{r}
+```{r echo = FALSE}
 if(!is.na(secret_path)){
   knitr::opts_chunk$set(eval=TRUE, message=FALSE, echo=TRUE)
 } else {

@@ -125,23 +125,18 @@
 <a class="sourceLine" id="cb2-12" data-line-number="12">### To make this token available in the next R session make sure to set the</a>
 <a class="sourceLine" id="cb2-13" data-line-number="13">### token via Sys.setenv() as shown below</a>
 <a class="sourceLine" id="cb2-14" data-line-number="14"><span class="kw">Sys.setenv</span>(<span class="st">"orcid_token"</span> =<span class="st"> "my_secret_orcid_token"</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="cf">if</span>(<span class="op">!</span><span class="kw">is.na</span>(secret_path)){</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">  knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">eval=</span><span class="ot">TRUE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">echo=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"> knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">eval=</span><span class="ot">FALSE</span>, <span class="dt">message=</span><span class="ot">FALSE</span>, <span class="dt">echo=</span><span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">}</a></code></pre></div>
 </div>
 <div id="get-names-and-url-for-all-orcids" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-names-and-url-for-all-orcids" class="anchor"></a>2.2 Get names and url for all ORCIDs</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">### Data frame with ORCIDs currently used at KWB</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3">orcids &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">"Matzinger, Andreas"</span>, <span class="st">"Sonnenberg, Hauke"</span>, <span class="st">"Rustler, Michael"</span>),</a>
-<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">id =</span> <span class="kw">c</span>(<span class="st">"0000-0001-5483-4594"</span>, <span class="st">"0000-0001-9134-2871"</span>, <span class="st">"0000-0003-0647-7726"</span>),</a>
-<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">stringsAsFactors =</span>  <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8">authors &lt;-<span class="st"> </span>kwb.orcid<span class="op">::</span><span class="kw">get_author_meta_for_orcids</span>(orcids<span class="op">$</span>id)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">### Data frame with ORCIDs currently used at KWB</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">orcids &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">"Matzinger, Andreas"</span>, <span class="st">"Sonnenberg, Hauke"</span>, <span class="st">"Rustler, Michael"</span>),</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">id =</span> <span class="kw">c</span>(<span class="st">"0000-0001-5483-4594"</span>, <span class="st">"0000-0001-9134-2871"</span>, <span class="st">"0000-0003-0647-7726"</span>),</a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">stringsAsFactors =</span>  <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">authors &lt;-<span class="st"> </span>kwb.orcid<span class="op">::</span><span class="kw">get_author_meta_for_orcids</span>(orcids<span class="op">$</span>id)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">orcid</th>
@@ -180,106 +175,106 @@
 <div id="get-publications-for-all-orcids" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-publications-for-all-orcids" class="anchor"></a>2.3 Get publications for all ORCIDs</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">publications &lt;-<span class="st"> </span>kwb.orcid<span class="op">::</span><span class="kw">create_publications_df_for_orcids</span>(orcids<span class="op">$</span>id)</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">head</span>(publications)</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt;                 orcid given_names family_name                       url</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; 1 0000-0001-5483-4594     Andreas   Matzinger                          </span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; 2 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; 3 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; 4 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 5 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; 6 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">#&gt;                                                     orcid_link put-code</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; 1 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594)       NA</span></a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; 2 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348381</span></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">#&gt; 3 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348378</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; 4 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348382</span></a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; 5 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348383</span></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">#&gt; 6 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348380</span></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt;              type visibility                               path</span></a>
-<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; 1            &lt;NA&gt;       &lt;NA&gt;                               &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">#&gt; 2 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348381</span></a>
-<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; 3 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348378</span></a>
-<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; 4 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348382</span></a>
-<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">#&gt; 5 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348383</span></a>
-<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt; 6 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348380</span></a>
-<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt;   display-index created-date.value last-modified-date.value</span></a>
-<a class="sourceLine" id="cb5-25" data-line-number="25"><span class="co">#&gt; 1          &lt;NA&gt;                 NA                       NA</span></a>
-<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt; 2             0       1.530972e+12             1.530972e+12</span></a>
-<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; 3             0       1.530972e+12             1.530972e+12</span></a>
-<a class="sourceLine" id="cb5-28" data-line-number="28"><span class="co">#&gt; 4             0       1.530972e+12             1.530972e+12</span></a>
-<a class="sourceLine" id="cb5-29" data-line-number="29"><span class="co">#&gt; 5             0       1.530972e+12             1.530972e+12</span></a>
-<a class="sourceLine" id="cb5-30" data-line-number="30"><span class="co">#&gt; 6             0       1.530972e+12             1.530972e+12</span></a>
-<a class="sourceLine" id="cb5-31" data-line-number="31"><span class="co">#&gt;   source.source-orcid                  source.source-client-id.uri</span></a>
-<a class="sourceLine" id="cb5-32" data-line-number="32"><span class="co">#&gt; 1                  NA                                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-33" data-line-number="33"><span class="co">#&gt; 2                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
-<a class="sourceLine" id="cb5-34" data-line-number="34"><span class="co">#&gt; 3                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
-<a class="sourceLine" id="cb5-35" data-line-number="35"><span class="co">#&gt; 4                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
-<a class="sourceLine" id="cb5-36" data-line-number="36"><span class="co">#&gt; 5                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
-<a class="sourceLine" id="cb5-37" data-line-number="37"><span class="co">#&gt; 6                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
-<a class="sourceLine" id="cb5-38" data-line-number="38"><span class="co">#&gt;   source.source-client-id.path source.source-client-id.host</span></a>
-<a class="sourceLine" id="cb5-39" data-line-number="39"><span class="co">#&gt; 1                         &lt;NA&gt;                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-40" data-line-number="40"><span class="co">#&gt; 2          0000-0002-5982-8983                    orcid.org</span></a>
-<a class="sourceLine" id="cb5-41" data-line-number="41"><span class="co">#&gt; 3          0000-0002-5982-8983                    orcid.org</span></a>
-<a class="sourceLine" id="cb5-42" data-line-number="42"><span class="co">#&gt; 4          0000-0002-5982-8983                    orcid.org</span></a>
-<a class="sourceLine" id="cb5-43" data-line-number="43"><span class="co">#&gt; 5          0000-0002-5982-8983                    orcid.org</span></a>
-<a class="sourceLine" id="cb5-44" data-line-number="44"><span class="co">#&gt; 6          0000-0002-5982-8983                    orcid.org</span></a>
-<a class="sourceLine" id="cb5-45" data-line-number="45"><span class="co">#&gt;   source.source-name.value title.subtitle title.translated-title</span></a>
-<a class="sourceLine" id="cb5-46" data-line-number="46"><span class="co">#&gt; 1                     &lt;NA&gt;             NA                     NA</span></a>
-<a class="sourceLine" id="cb5-47" data-line-number="47"><span class="co">#&gt; 2        Scopus - Elsevier             NA                     NA</span></a>
-<a class="sourceLine" id="cb5-48" data-line-number="48"><span class="co">#&gt; 3        Scopus - Elsevier             NA                     NA</span></a>
-<a class="sourceLine" id="cb5-49" data-line-number="49"><span class="co">#&gt; 4        Scopus - Elsevier             NA                     NA</span></a>
-<a class="sourceLine" id="cb5-50" data-line-number="50"><span class="co">#&gt; 5        Scopus - Elsevier             NA                     NA</span></a>
-<a class="sourceLine" id="cb5-51" data-line-number="51"><span class="co">#&gt; 6        Scopus - Elsevier             NA                     NA</span></a>
-<a class="sourceLine" id="cb5-52" data-line-number="52"><span class="co">#&gt;                                                                                                                         title.title.value</span></a>
-<a class="sourceLine" id="cb5-53" data-line-number="53"><span class="co">#&gt; 1                                                                                                                                    &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-54" data-line-number="54"><span class="co">#&gt; 2                                                   The relevance of sewer deterioration modelling to support asset management strategies</span></a>
-<a class="sourceLine" id="cb5-55" data-line-number="55"><span class="co">#&gt; 3                Impacts of combined sewer overflows on a large urban river – Understanding the effect of different management strategies</span></a>
-<a class="sourceLine" id="cb5-56" data-line-number="56"><span class="co">#&gt; 4 Influence of local calibration on the quality of online wet weather discharge monitoring: Feedback from five international case studies</span></a>
-<a class="sourceLine" id="cb5-57" data-line-number="57"><span class="co">#&gt; 5                                                                                  Best data handling practices in water-related research</span></a>
-<a class="sourceLine" id="cb5-58" data-line-number="58"><span class="co">#&gt; 6                    The influence of local calibration on the quality of UV-VIS spectrometer measurements in urban stormwater monitoring</span></a>
-<a class="sourceLine" id="cb5-59" data-line-number="59"><span class="co">#&gt;                                                          external-ids.external-id</span></a>
-<a class="sourceLine" id="cb5-60" data-line-number="60"><span class="co">#&gt; 1                                                                            NULL</span></a>
-<a class="sourceLine" id="cb5-61" data-line-number="61"><span class="co">#&gt; 2 doi, eid, 10.1080/1573062X.2017.1325497, 2-s2.0-85019615780, NA, NA, SELF, SELF</span></a>
-<a class="sourceLine" id="cb5-62" data-line-number="62"><span class="co">#&gt; 3  doi, eid, 10.1016/j.watres.2016.08.017, 2-s2.0-84986616713, NA, NA, SELF, SELF</span></a>
-<a class="sourceLine" id="cb5-63" data-line-number="63"><span class="co">#&gt; 4          doi, eid, 10.2166/wst.2014.465, 2-s2.0-84923474533, NA, NA, SELF, SELF</span></a>
-<a class="sourceLine" id="cb5-64" data-line-number="64"><span class="co">#&gt; 5          doi, eid, 10.2166/wpt.2013.039, 2-s2.0-84890261205, NA, NA, SELF, SELF</span></a>
-<a class="sourceLine" id="cb5-65" data-line-number="65"><span class="co">#&gt; 6          doi, eid, 10.2166/wpt.2013.042, 2-s2.0-84890261164, NA, NA, SELF, SELF</span></a>
-<a class="sourceLine" id="cb5-66" data-line-number="66"><span class="co">#&gt;   publication-date.month publication-date.day publication-date.media-type</span></a>
-<a class="sourceLine" id="cb5-67" data-line-number="67"><span class="co">#&gt; 1                     NA                   NA                          NA</span></a>
-<a class="sourceLine" id="cb5-68" data-line-number="68"><span class="co">#&gt; 2                     NA                   NA                          NA</span></a>
-<a class="sourceLine" id="cb5-69" data-line-number="69"><span class="co">#&gt; 3                     NA                   NA                          NA</span></a>
-<a class="sourceLine" id="cb5-70" data-line-number="70"><span class="co">#&gt; 4                     NA                   NA                          NA</span></a>
-<a class="sourceLine" id="cb5-71" data-line-number="71"><span class="co">#&gt; 5                     NA                   NA                          NA</span></a>
-<a class="sourceLine" id="cb5-72" data-line-number="72"><span class="co">#&gt; 6                     NA                   NA                          NA</span></a>
-<a class="sourceLine" id="cb5-73" data-line-number="73"><span class="co">#&gt;   publication-date.year.value publication-date.month.value</span></a>
-<a class="sourceLine" id="cb5-74" data-line-number="74"><span class="co">#&gt; 1                        &lt;NA&gt;                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-75" data-line-number="75"><span class="co">#&gt; 2                        2017                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-76" data-line-number="76"><span class="co">#&gt; 3                        2016                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-77" data-line-number="77"><span class="co">#&gt; 4                        2015                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-78" data-line-number="78"><span class="co">#&gt; 5                        2013                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-79" data-line-number="79"><span class="co">#&gt; 6                        2013                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-80" data-line-number="80"><span class="co">#&gt;   publication-date.day.value source.source-client-id</span></a>
-<a class="sourceLine" id="cb5-81" data-line-number="81"><span class="co">#&gt; 1                       &lt;NA&gt;                      NA</span></a>
-<a class="sourceLine" id="cb5-82" data-line-number="82"><span class="co">#&gt; 2                       &lt;NA&gt;                      NA</span></a>
-<a class="sourceLine" id="cb5-83" data-line-number="83"><span class="co">#&gt; 3                       &lt;NA&gt;                      NA</span></a>
-<a class="sourceLine" id="cb5-84" data-line-number="84"><span class="co">#&gt; 4                       &lt;NA&gt;                      NA</span></a>
-<a class="sourceLine" id="cb5-85" data-line-number="85"><span class="co">#&gt; 5                       &lt;NA&gt;                      NA</span></a>
-<a class="sourceLine" id="cb5-86" data-line-number="86"><span class="co">#&gt; 6                       &lt;NA&gt;                      NA</span></a>
-<a class="sourceLine" id="cb5-87" data-line-number="87"><span class="co">#&gt;   source.source-orcid.uri source.source-orcid.path</span></a>
-<a class="sourceLine" id="cb5-88" data-line-number="88"><span class="co">#&gt; 1                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-89" data-line-number="89"><span class="co">#&gt; 2                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-90" data-line-number="90"><span class="co">#&gt; 3                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-91" data-line-number="91"><span class="co">#&gt; 4                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-92" data-line-number="92"><span class="co">#&gt; 5                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-93" data-line-number="93"><span class="co">#&gt; 6                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-94" data-line-number="94"><span class="co">#&gt;   source.source-orcid.host</span></a>
-<a class="sourceLine" id="cb5-95" data-line-number="95"><span class="co">#&gt; 1                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-96" data-line-number="96"><span class="co">#&gt; 2                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-97" data-line-number="97"><span class="co">#&gt; 3                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-98" data-line-number="98"><span class="co">#&gt; 4                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-99" data-line-number="99"><span class="co">#&gt; 5                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb5-100" data-line-number="100"><span class="co">#&gt; 6                     &lt;NA&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">publications &lt;-<span class="st"> </span>kwb.orcid<span class="op">::</span><span class="kw">create_publications_df_for_orcids</span>(orcids<span class="op">$</span>id)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">head</span>(publications)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt;                 orcid given_names family_name                       url</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; 1 0000-0001-5483-4594     Andreas   Matzinger                          </span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; 2 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; 3 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; 4 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; 5 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; 6 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt;                                                     orcid_link put-code</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; 1 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594)       NA</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; 2 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348381</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; 3 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348378</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; 4 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348382</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; 5 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348383</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt; 6 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348380</span></a>
+<a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt;              type visibility                               path</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; 1            &lt;NA&gt;       &lt;NA&gt;                               &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; 2 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348381</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 3 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348378</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 4 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348382</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt; 5 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348383</span></a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co">#&gt; 6 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348380</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co">#&gt;   display-index created-date.value last-modified-date.value</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="co">#&gt; 1          &lt;NA&gt;                 NA                       NA</span></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">#&gt; 2             0       1.530972e+12             1.530972e+12</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co">#&gt; 3             0       1.530972e+12             1.530972e+12</span></a>
+<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="co">#&gt; 4             0       1.530972e+12             1.530972e+12</span></a>
+<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="co">#&gt; 5             0       1.530972e+12             1.530972e+12</span></a>
+<a class="sourceLine" id="cb4-30" data-line-number="30"><span class="co">#&gt; 6             0       1.530972e+12             1.530972e+12</span></a>
+<a class="sourceLine" id="cb4-31" data-line-number="31"><span class="co">#&gt;   source.source-orcid                  source.source-client-id.uri</span></a>
+<a class="sourceLine" id="cb4-32" data-line-number="32"><span class="co">#&gt; 1                  NA                                         &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-33" data-line-number="33"><span class="co">#&gt; 2                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
+<a class="sourceLine" id="cb4-34" data-line-number="34"><span class="co">#&gt; 3                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
+<a class="sourceLine" id="cb4-35" data-line-number="35"><span class="co">#&gt; 4                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
+<a class="sourceLine" id="cb4-36" data-line-number="36"><span class="co">#&gt; 5                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
+<a class="sourceLine" id="cb4-37" data-line-number="37"><span class="co">#&gt; 6                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
+<a class="sourceLine" id="cb4-38" data-line-number="38"><span class="co">#&gt;   source.source-client-id.path source.source-client-id.host</span></a>
+<a class="sourceLine" id="cb4-39" data-line-number="39"><span class="co">#&gt; 1                         &lt;NA&gt;                         &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-40" data-line-number="40"><span class="co">#&gt; 2          0000-0002-5982-8983                    orcid.org</span></a>
+<a class="sourceLine" id="cb4-41" data-line-number="41"><span class="co">#&gt; 3          0000-0002-5982-8983                    orcid.org</span></a>
+<a class="sourceLine" id="cb4-42" data-line-number="42"><span class="co">#&gt; 4          0000-0002-5982-8983                    orcid.org</span></a>
+<a class="sourceLine" id="cb4-43" data-line-number="43"><span class="co">#&gt; 5          0000-0002-5982-8983                    orcid.org</span></a>
+<a class="sourceLine" id="cb4-44" data-line-number="44"><span class="co">#&gt; 6          0000-0002-5982-8983                    orcid.org</span></a>
+<a class="sourceLine" id="cb4-45" data-line-number="45"><span class="co">#&gt;   source.source-name.value title.subtitle title.translated-title</span></a>
+<a class="sourceLine" id="cb4-46" data-line-number="46"><span class="co">#&gt; 1                     &lt;NA&gt;             NA                     NA</span></a>
+<a class="sourceLine" id="cb4-47" data-line-number="47"><span class="co">#&gt; 2        Scopus - Elsevier             NA                     NA</span></a>
+<a class="sourceLine" id="cb4-48" data-line-number="48"><span class="co">#&gt; 3        Scopus - Elsevier             NA                     NA</span></a>
+<a class="sourceLine" id="cb4-49" data-line-number="49"><span class="co">#&gt; 4        Scopus - Elsevier             NA                     NA</span></a>
+<a class="sourceLine" id="cb4-50" data-line-number="50"><span class="co">#&gt; 5        Scopus - Elsevier             NA                     NA</span></a>
+<a class="sourceLine" id="cb4-51" data-line-number="51"><span class="co">#&gt; 6        Scopus - Elsevier             NA                     NA</span></a>
+<a class="sourceLine" id="cb4-52" data-line-number="52"><span class="co">#&gt;                                                                                                                         title.title.value</span></a>
+<a class="sourceLine" id="cb4-53" data-line-number="53"><span class="co">#&gt; 1                                                                                                                                    &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-54" data-line-number="54"><span class="co">#&gt; 2                                                   The relevance of sewer deterioration modelling to support asset management strategies</span></a>
+<a class="sourceLine" id="cb4-55" data-line-number="55"><span class="co">#&gt; 3                Impacts of combined sewer overflows on a large urban river – Understanding the effect of different management strategies</span></a>
+<a class="sourceLine" id="cb4-56" data-line-number="56"><span class="co">#&gt; 4 Influence of local calibration on the quality of online wet weather discharge monitoring: Feedback from five international case studies</span></a>
+<a class="sourceLine" id="cb4-57" data-line-number="57"><span class="co">#&gt; 5                                                                                  Best data handling practices in water-related research</span></a>
+<a class="sourceLine" id="cb4-58" data-line-number="58"><span class="co">#&gt; 6                    The influence of local calibration on the quality of UV-VIS spectrometer measurements in urban stormwater monitoring</span></a>
+<a class="sourceLine" id="cb4-59" data-line-number="59"><span class="co">#&gt;                                                          external-ids.external-id</span></a>
+<a class="sourceLine" id="cb4-60" data-line-number="60"><span class="co">#&gt; 1                                                                            NULL</span></a>
+<a class="sourceLine" id="cb4-61" data-line-number="61"><span class="co">#&gt; 2 doi, eid, 10.1080/1573062X.2017.1325497, 2-s2.0-85019615780, NA, NA, SELF, SELF</span></a>
+<a class="sourceLine" id="cb4-62" data-line-number="62"><span class="co">#&gt; 3  doi, eid, 10.1016/j.watres.2016.08.017, 2-s2.0-84986616713, NA, NA, SELF, SELF</span></a>
+<a class="sourceLine" id="cb4-63" data-line-number="63"><span class="co">#&gt; 4          doi, eid, 10.2166/wst.2014.465, 2-s2.0-84923474533, NA, NA, SELF, SELF</span></a>
+<a class="sourceLine" id="cb4-64" data-line-number="64"><span class="co">#&gt; 5          doi, eid, 10.2166/wpt.2013.039, 2-s2.0-84890261205, NA, NA, SELF, SELF</span></a>
+<a class="sourceLine" id="cb4-65" data-line-number="65"><span class="co">#&gt; 6          doi, eid, 10.2166/wpt.2013.042, 2-s2.0-84890261164, NA, NA, SELF, SELF</span></a>
+<a class="sourceLine" id="cb4-66" data-line-number="66"><span class="co">#&gt;   publication-date.month publication-date.day publication-date.media-type</span></a>
+<a class="sourceLine" id="cb4-67" data-line-number="67"><span class="co">#&gt; 1                     NA                   NA                          NA</span></a>
+<a class="sourceLine" id="cb4-68" data-line-number="68"><span class="co">#&gt; 2                     NA                   NA                          NA</span></a>
+<a class="sourceLine" id="cb4-69" data-line-number="69"><span class="co">#&gt; 3                     NA                   NA                          NA</span></a>
+<a class="sourceLine" id="cb4-70" data-line-number="70"><span class="co">#&gt; 4                     NA                   NA                          NA</span></a>
+<a class="sourceLine" id="cb4-71" data-line-number="71"><span class="co">#&gt; 5                     NA                   NA                          NA</span></a>
+<a class="sourceLine" id="cb4-72" data-line-number="72"><span class="co">#&gt; 6                     NA                   NA                          NA</span></a>
+<a class="sourceLine" id="cb4-73" data-line-number="73"><span class="co">#&gt;   publication-date.year.value publication-date.month.value</span></a>
+<a class="sourceLine" id="cb4-74" data-line-number="74"><span class="co">#&gt; 1                        &lt;NA&gt;                         &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-75" data-line-number="75"><span class="co">#&gt; 2                        2017                         &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-76" data-line-number="76"><span class="co">#&gt; 3                        2016                         &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-77" data-line-number="77"><span class="co">#&gt; 4                        2015                         &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-78" data-line-number="78"><span class="co">#&gt; 5                        2013                         &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-79" data-line-number="79"><span class="co">#&gt; 6                        2013                         &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-80" data-line-number="80"><span class="co">#&gt;   publication-date.day.value source.source-client-id</span></a>
+<a class="sourceLine" id="cb4-81" data-line-number="81"><span class="co">#&gt; 1                       &lt;NA&gt;                      NA</span></a>
+<a class="sourceLine" id="cb4-82" data-line-number="82"><span class="co">#&gt; 2                       &lt;NA&gt;                      NA</span></a>
+<a class="sourceLine" id="cb4-83" data-line-number="83"><span class="co">#&gt; 3                       &lt;NA&gt;                      NA</span></a>
+<a class="sourceLine" id="cb4-84" data-line-number="84"><span class="co">#&gt; 4                       &lt;NA&gt;                      NA</span></a>
+<a class="sourceLine" id="cb4-85" data-line-number="85"><span class="co">#&gt; 5                       &lt;NA&gt;                      NA</span></a>
+<a class="sourceLine" id="cb4-86" data-line-number="86"><span class="co">#&gt; 6                       &lt;NA&gt;                      NA</span></a>
+<a class="sourceLine" id="cb4-87" data-line-number="87"><span class="co">#&gt;   source.source-orcid.uri source.source-orcid.path</span></a>
+<a class="sourceLine" id="cb4-88" data-line-number="88"><span class="co">#&gt; 1                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-89" data-line-number="89"><span class="co">#&gt; 2                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-90" data-line-number="90"><span class="co">#&gt; 3                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-91" data-line-number="91"><span class="co">#&gt; 4                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-92" data-line-number="92"><span class="co">#&gt; 5                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-93" data-line-number="93"><span class="co">#&gt; 6                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-94" data-line-number="94"><span class="co">#&gt;   source.source-orcid.host</span></a>
+<a class="sourceLine" id="cb4-95" data-line-number="95"><span class="co">#&gt; 1                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-96" data-line-number="96"><span class="co">#&gt; 2                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-97" data-line-number="97"><span class="co">#&gt; 3                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-98" data-line-number="98"><span class="co">#&gt; 4                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-99" data-line-number="99"><span class="co">#&gt; 5                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-100" data-line-number="100"><span class="co">#&gt; 6                     &lt;NA&gt;</span></a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">orcid</th>
