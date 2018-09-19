@@ -80,7 +80,7 @@
       <h1>Tutorial</h1>
                         <h4 class="author">Michael Rustler</h4>
             
-            <h4 class="date">2018-07-10</h4>
+            <h4 class="date">2018-09-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/KWB-R/kwb.orcid/blob/master/vignettes/tutorial.Rmd"><code>vignettes/tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>tutorial.Rmd</code></div>
@@ -132,11 +132,17 @@
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">### Data frame with ORCIDs currently used at KWB</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">orcids &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">"Matzinger, Andreas"</span>, <span class="st">"Sonnenberg, Hauke"</span>, <span class="st">"Rustler, Michael"</span>),</a>
-<a class="sourceLine" id="cb3-5" data-line-number="5">  <span class="dt">id =</span> <span class="kw">c</span>(<span class="st">"0000-0001-5483-4594"</span>, <span class="st">"0000-0001-9134-2871"</span>, <span class="st">"0000-0003-0647-7726"</span>),</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">  <span class="dt">stringsAsFactors =</span>  <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">authors &lt;-<span class="st"> </span>kwb.orcid<span class="op">::</span><span class="kw">get_author_meta_for_orcids</span>(orcids<span class="op">$</span>id)</a></code></pre></div>
+<a class="sourceLine" id="cb3-4" data-line-number="4">  <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">"Matzinger, Andreas"</span>, </a>
+<a class="sourceLine" id="cb3-5" data-line-number="5">            <span class="st">"Sonnenberg, Hauke"</span>, </a>
+<a class="sourceLine" id="cb3-6" data-line-number="6">            <span class="st">"Seis, Wolfgang"</span>, </a>
+<a class="sourceLine" id="cb3-7" data-line-number="7">            <span class="st">"Rustler, Michael"</span>),</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">  <span class="dt">id =</span> <span class="kw">c</span>(<span class="st">"0000-0001-5483-4594"</span>, </a>
+<a class="sourceLine" id="cb3-9" data-line-number="9">         <span class="st">"0000-0001-9134-2871"</span>, </a>
+<a class="sourceLine" id="cb3-10" data-line-number="10">         <span class="st">"0000-0002-7436-8575"</span>, </a>
+<a class="sourceLine" id="cb3-11" data-line-number="11">         <span class="st">"0000-0003-0647-7726"</span>),</a>
+<a class="sourceLine" id="cb3-12" data-line-number="12">  <span class="dt">stringsAsFactors =</span>  <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14">authors &lt;-<span class="st"> </span>kwb.orcid<span class="op">::</span><span class="kw">get_author_meta_for_orcids</span>(orcids<span class="op">$</span>id)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">orcid</th>
@@ -161,6 +167,13 @@
 <td align="left"><a href="https://orcid.org/0000-0001-9134-2871">0000-0001-9134-2871</a></td>
 </tr>
 <tr class="odd">
+<td align="left">0000-0002-7436-8575</td>
+<td align="left">Wolfgang</td>
+<td align="left">Seis</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0002-7436-8575">0000-0002-7436-8575</a></td>
+</tr>
+<tr class="even">
 <td align="left">0000-0003-0647-7726</td>
 <td align="left">Michael</td>
 <td align="left">Rustler</td>
@@ -177,69 +190,69 @@
 <a href="#get-publications-for-all-orcids" class="anchor"></a>2.3 Get publications for all ORCIDs</h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">publications &lt;-<span class="st"> </span>kwb.orcid<span class="op">::</span><span class="kw">create_publications_df_for_orcids</span>(orcids<span class="op">$</span>id)</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">head</span>(publications)</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt;                 orcid given_names family_name                       url</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; 1 0000-0001-5483-4594     Andreas   Matzinger                          </span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; 2 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; 3 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; 4 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; 5 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
-<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; 6 0000-0001-9134-2871       Hauke  Sonnenberg https://github.com/hsonne</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt;                 orcid given_names family_name url</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; 1 0000-0001-5483-4594     Andreas   Matzinger    </span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; 2 0000-0001-5483-4594     Andreas   Matzinger    </span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; 3 0000-0001-5483-4594     Andreas   Matzinger    </span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; 4 0000-0001-5483-4594     Andreas   Matzinger    </span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; 5 0000-0001-5483-4594     Andreas   Matzinger    </span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; 6 0000-0001-5483-4594     Andreas   Matzinger    </span></a>
 <a class="sourceLine" id="cb4-10" data-line-number="10"><span class="co">#&gt;                                                     orcid_link put-code</span></a>
-<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; 1 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594)       NA</span></a>
-<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; 2 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348381</span></a>
-<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; 3 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348378</span></a>
-<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; 4 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348382</span></a>
-<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; 5 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348383</span></a>
-<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt; 6 [0000-0001-9134-2871](https://orcid.org/0000-0001-9134-2871) 46348380</span></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="co">#&gt; 1 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594) 46295084</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="co">#&gt; 2 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594) 46295081</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="co">#&gt; 3 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594) 46295078</span></a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="co">#&gt; 4 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594) 46295079</span></a>
+<a class="sourceLine" id="cb4-15" data-line-number="15"><span class="co">#&gt; 5 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594)  5121191</span></a>
+<a class="sourceLine" id="cb4-16" data-line-number="16"><span class="co">#&gt; 6 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594) 46295089</span></a>
 <a class="sourceLine" id="cb4-17" data-line-number="17"><span class="co">#&gt;              type visibility                               path</span></a>
-<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; 1            &lt;NA&gt;       &lt;NA&gt;                               &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; 2 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348381</span></a>
-<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 3 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348378</span></a>
-<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 4 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348382</span></a>
-<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt; 5 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348383</span></a>
-<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co">#&gt; 6 JOURNAL_ARTICLE     PUBLIC /0000-0001-9134-2871/work/46348380</span></a>
+<a class="sourceLine" id="cb4-18" data-line-number="18"><span class="co">#&gt; 1 JOURNAL_ARTICLE     PUBLIC /0000-0001-5483-4594/work/46295084</span></a>
+<a class="sourceLine" id="cb4-19" data-line-number="19"><span class="co">#&gt; 2 JOURNAL_ARTICLE     PUBLIC /0000-0001-5483-4594/work/46295081</span></a>
+<a class="sourceLine" id="cb4-20" data-line-number="20"><span class="co">#&gt; 3 JOURNAL_ARTICLE     PUBLIC /0000-0001-5483-4594/work/46295078</span></a>
+<a class="sourceLine" id="cb4-21" data-line-number="21"><span class="co">#&gt; 4 JOURNAL_ARTICLE     PUBLIC /0000-0001-5483-4594/work/46295079</span></a>
+<a class="sourceLine" id="cb4-22" data-line-number="22"><span class="co">#&gt; 5 JOURNAL_ARTICLE     PUBLIC  /0000-0001-5483-4594/work/5121191</span></a>
+<a class="sourceLine" id="cb4-23" data-line-number="23"><span class="co">#&gt; 6 JOURNAL_ARTICLE     PUBLIC /0000-0001-5483-4594/work/46295089</span></a>
 <a class="sourceLine" id="cb4-24" data-line-number="24"><span class="co">#&gt;   display-index created-date.value last-modified-date.value</span></a>
-<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="co">#&gt; 1          &lt;NA&gt;                 NA                       NA</span></a>
-<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">#&gt; 2             0       1.530972e+12             1.530972e+12</span></a>
-<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co">#&gt; 3             0       1.530972e+12             1.530972e+12</span></a>
-<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="co">#&gt; 4             0       1.530972e+12             1.530972e+12</span></a>
-<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="co">#&gt; 5             0       1.530972e+12             1.530972e+12</span></a>
-<a class="sourceLine" id="cb4-30" data-line-number="30"><span class="co">#&gt; 6             0       1.530972e+12             1.530972e+12</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25"><span class="co">#&gt; 1             0       1.530808e+12             1.536155e+12</span></a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"><span class="co">#&gt; 2             0       1.530808e+12             1.536155e+12</span></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co">#&gt; 3             0       1.530808e+12             1.536155e+12</span></a>
+<a class="sourceLine" id="cb4-28" data-line-number="28"><span class="co">#&gt; 4             0       1.530808e+12             1.536155e+12</span></a>
+<a class="sourceLine" id="cb4-29" data-line-number="29"><span class="co">#&gt; 5             0       1.362697e+12             1.536155e+12</span></a>
+<a class="sourceLine" id="cb4-30" data-line-number="30"><span class="co">#&gt; 6             0       1.530808e+12             1.536155e+12</span></a>
 <a class="sourceLine" id="cb4-31" data-line-number="31"><span class="co">#&gt;   source.source-orcid                  source.source-client-id.uri</span></a>
-<a class="sourceLine" id="cb4-32" data-line-number="32"><span class="co">#&gt; 1                  NA                                         &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-32" data-line-number="32"><span class="co">#&gt; 1                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
 <a class="sourceLine" id="cb4-33" data-line-number="33"><span class="co">#&gt; 2                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
 <a class="sourceLine" id="cb4-34" data-line-number="34"><span class="co">#&gt; 3                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
 <a class="sourceLine" id="cb4-35" data-line-number="35"><span class="co">#&gt; 4                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
-<a class="sourceLine" id="cb4-36" data-line-number="36"><span class="co">#&gt; 5                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
+<a class="sourceLine" id="cb4-36" data-line-number="36"><span class="co">#&gt; 5                  NA                                         &lt;NA&gt;</span></a>
 <a class="sourceLine" id="cb4-37" data-line-number="37"><span class="co">#&gt; 6                  NA https://orcid.org/client/0000-0002-5982-8983</span></a>
 <a class="sourceLine" id="cb4-38" data-line-number="38"><span class="co">#&gt;   source.source-client-id.path source.source-client-id.host</span></a>
-<a class="sourceLine" id="cb4-39" data-line-number="39"><span class="co">#&gt; 1                         &lt;NA&gt;                         &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-39" data-line-number="39"><span class="co">#&gt; 1          0000-0002-5982-8983                    orcid.org</span></a>
 <a class="sourceLine" id="cb4-40" data-line-number="40"><span class="co">#&gt; 2          0000-0002-5982-8983                    orcid.org</span></a>
 <a class="sourceLine" id="cb4-41" data-line-number="41"><span class="co">#&gt; 3          0000-0002-5982-8983                    orcid.org</span></a>
 <a class="sourceLine" id="cb4-42" data-line-number="42"><span class="co">#&gt; 4          0000-0002-5982-8983                    orcid.org</span></a>
-<a class="sourceLine" id="cb4-43" data-line-number="43"><span class="co">#&gt; 5          0000-0002-5982-8983                    orcid.org</span></a>
+<a class="sourceLine" id="cb4-43" data-line-number="43"><span class="co">#&gt; 5                         &lt;NA&gt;                         &lt;NA&gt;</span></a>
 <a class="sourceLine" id="cb4-44" data-line-number="44"><span class="co">#&gt; 6          0000-0002-5982-8983                    orcid.org</span></a>
 <a class="sourceLine" id="cb4-45" data-line-number="45"><span class="co">#&gt;   source.source-name.value title.subtitle title.translated-title</span></a>
-<a class="sourceLine" id="cb4-46" data-line-number="46"><span class="co">#&gt; 1                     &lt;NA&gt;             NA                     NA</span></a>
+<a class="sourceLine" id="cb4-46" data-line-number="46"><span class="co">#&gt; 1        Scopus - Elsevier             NA                     NA</span></a>
 <a class="sourceLine" id="cb4-47" data-line-number="47"><span class="co">#&gt; 2        Scopus - Elsevier             NA                     NA</span></a>
 <a class="sourceLine" id="cb4-48" data-line-number="48"><span class="co">#&gt; 3        Scopus - Elsevier             NA                     NA</span></a>
 <a class="sourceLine" id="cb4-49" data-line-number="49"><span class="co">#&gt; 4        Scopus - Elsevier             NA                     NA</span></a>
-<a class="sourceLine" id="cb4-50" data-line-number="50"><span class="co">#&gt; 5        Scopus - Elsevier             NA                     NA</span></a>
+<a class="sourceLine" id="cb4-50" data-line-number="50"><span class="co">#&gt; 5        Andreas Matzinger             NA                     NA</span></a>
 <a class="sourceLine" id="cb4-51" data-line-number="51"><span class="co">#&gt; 6        Scopus - Elsevier             NA                     NA</span></a>
-<a class="sourceLine" id="cb4-52" data-line-number="52"><span class="co">#&gt;                                                                                                                         title.title.value</span></a>
-<a class="sourceLine" id="cb4-53" data-line-number="53"><span class="co">#&gt; 1                                                                                                                                    &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-54" data-line-number="54"><span class="co">#&gt; 2                                                   The relevance of sewer deterioration modelling to support asset management strategies</span></a>
-<a class="sourceLine" id="cb4-55" data-line-number="55"><span class="co">#&gt; 3                Impacts of combined sewer overflows on a large urban river – Understanding the effect of different management strategies</span></a>
-<a class="sourceLine" id="cb4-56" data-line-number="56"><span class="co">#&gt; 4 Influence of local calibration on the quality of online wet weather discharge monitoring: Feedback from five international case studies</span></a>
-<a class="sourceLine" id="cb4-57" data-line-number="57"><span class="co">#&gt; 5                                                                                  Best data handling practices in water-related research</span></a>
-<a class="sourceLine" id="cb4-58" data-line-number="58"><span class="co">#&gt; 6                    The influence of local calibration on the quality of UV-VIS spectrometer measurements in urban stormwater monitoring</span></a>
+<a class="sourceLine" id="cb4-52" data-line-number="52"><span class="co">#&gt;                                                                                                          title.title.value</span></a>
+<a class="sourceLine" id="cb4-53" data-line-number="53"><span class="co">#&gt; 1 Impacts of combined sewer overflows on a large urban river – Understanding the effect of different management strategies</span></a>
+<a class="sourceLine" id="cb4-54" data-line-number="54"><span class="co">#&gt; 2                                                                   Best data handling practices in water-related research</span></a>
+<a class="sourceLine" id="cb4-55" data-line-number="55"><span class="co">#&gt; 3      Concurrent nitrate and atrazine retention in bioreactors of straw and bark mulch at short hydraulic residence times</span></a>
+<a class="sourceLine" id="cb4-56" data-line-number="56"><span class="co">#&gt; 4     The influence of local calibration on the quality of UV-VIS spectrometer measurements in urban stormwater monitoring</span></a>
+<a class="sourceLine" id="cb4-57" data-line-number="57"><span class="co">#&gt; 5                                                                         Hypolimnetic Oxygen Depletion in Eutrophic Lakes</span></a>
+<a class="sourceLine" id="cb4-58" data-line-number="58"><span class="co">#&gt; 6                                                                         Hypolimnetic oxygen depletion in eutrophic lakes</span></a>
 <a class="sourceLine" id="cb4-59" data-line-number="59"><span class="co">#&gt;                                                          external-ids.external-id</span></a>
-<a class="sourceLine" id="cb4-60" data-line-number="60"><span class="co">#&gt; 1                                                                            NULL</span></a>
-<a class="sourceLine" id="cb4-61" data-line-number="61"><span class="co">#&gt; 2 doi, eid, 10.1080/1573062X.2017.1325497, 2-s2.0-85019615780, NA, NA, SELF, SELF</span></a>
-<a class="sourceLine" id="cb4-62" data-line-number="62"><span class="co">#&gt; 3  doi, eid, 10.1016/j.watres.2016.08.017, 2-s2.0-84986616713, NA, NA, SELF, SELF</span></a>
-<a class="sourceLine" id="cb4-63" data-line-number="63"><span class="co">#&gt; 4          doi, eid, 10.2166/wst.2014.465, 2-s2.0-84923474533, NA, NA, SELF, SELF</span></a>
-<a class="sourceLine" id="cb4-64" data-line-number="64"><span class="co">#&gt; 5          doi, eid, 10.2166/wpt.2013.039, 2-s2.0-84890261205, NA, NA, SELF, SELF</span></a>
-<a class="sourceLine" id="cb4-65" data-line-number="65"><span class="co">#&gt; 6          doi, eid, 10.2166/wpt.2013.042, 2-s2.0-84890261164, NA, NA, SELF, SELF</span></a>
+<a class="sourceLine" id="cb4-60" data-line-number="60"><span class="co">#&gt; 1  doi, eid, 10.1016/j.watres.2016.08.017, 2-s2.0-84986616713, NA, NA, SELF, SELF</span></a>
+<a class="sourceLine" id="cb4-61" data-line-number="61"><span class="co">#&gt; 2          doi, eid, 10.2166/wpt.2013.039, 2-s2.0-84890261205, NA, NA, SELF, SELF</span></a>
+<a class="sourceLine" id="cb4-62" data-line-number="62"><span class="co">#&gt; 3 doi, eid, 10.1016/j.ecoleng.2013.02.010, 2-s2.0-84875772175, NA, NA, SELF, SELF</span></a>
+<a class="sourceLine" id="cb4-63" data-line-number="63"><span class="co">#&gt; 4          doi, eid, 10.2166/wpt.2013.042, 2-s2.0-84890261164, NA, NA, SELF, SELF</span></a>
+<a class="sourceLine" id="cb4-64" data-line-number="64"><span class="co">#&gt; 5                                                  doi, 10.1021/es301422r, SELF, </span></a>
+<a class="sourceLine" id="cb4-65" data-line-number="65"><span class="co">#&gt; 6             doi, eid, 10.1021/es301422r, 2-s2.0-84866433505, NA, NA, SELF, SELF</span></a>
 <a class="sourceLine" id="cb4-66" data-line-number="66"><span class="co">#&gt;   publication-date.month publication-date.day publication-date.media-type</span></a>
 <a class="sourceLine" id="cb4-67" data-line-number="67"><span class="co">#&gt; 1                     NA                   NA                          NA</span></a>
 <a class="sourceLine" id="cb4-68" data-line-number="68"><span class="co">#&gt; 2                     NA                   NA                          NA</span></a>
@@ -247,34 +260,34 @@
 <a class="sourceLine" id="cb4-70" data-line-number="70"><span class="co">#&gt; 4                     NA                   NA                          NA</span></a>
 <a class="sourceLine" id="cb4-71" data-line-number="71"><span class="co">#&gt; 5                     NA                   NA                          NA</span></a>
 <a class="sourceLine" id="cb4-72" data-line-number="72"><span class="co">#&gt; 6                     NA                   NA                          NA</span></a>
-<a class="sourceLine" id="cb4-73" data-line-number="73"><span class="co">#&gt;   publication-date.year.value publication-date.month.value</span></a>
-<a class="sourceLine" id="cb4-74" data-line-number="74"><span class="co">#&gt; 1                        &lt;NA&gt;                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-75" data-line-number="75"><span class="co">#&gt; 2                        2017                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-76" data-line-number="76"><span class="co">#&gt; 3                        2016                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-77" data-line-number="77"><span class="co">#&gt; 4                        2015                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-78" data-line-number="78"><span class="co">#&gt; 5                        2013                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-79" data-line-number="79"><span class="co">#&gt; 6                        2013                         &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-80" data-line-number="80"><span class="co">#&gt;   publication-date.day.value source.source-client-id</span></a>
-<a class="sourceLine" id="cb4-81" data-line-number="81"><span class="co">#&gt; 1                       &lt;NA&gt;                      NA</span></a>
-<a class="sourceLine" id="cb4-82" data-line-number="82"><span class="co">#&gt; 2                       &lt;NA&gt;                      NA</span></a>
-<a class="sourceLine" id="cb4-83" data-line-number="83"><span class="co">#&gt; 3                       &lt;NA&gt;                      NA</span></a>
-<a class="sourceLine" id="cb4-84" data-line-number="84"><span class="co">#&gt; 4                       &lt;NA&gt;                      NA</span></a>
-<a class="sourceLine" id="cb4-85" data-line-number="85"><span class="co">#&gt; 5                       &lt;NA&gt;                      NA</span></a>
-<a class="sourceLine" id="cb4-86" data-line-number="86"><span class="co">#&gt; 6                       &lt;NA&gt;                      NA</span></a>
-<a class="sourceLine" id="cb4-87" data-line-number="87"><span class="co">#&gt;   source.source-orcid.uri source.source-orcid.path</span></a>
-<a class="sourceLine" id="cb4-88" data-line-number="88"><span class="co">#&gt; 1                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-89" data-line-number="89"><span class="co">#&gt; 2                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-90" data-line-number="90"><span class="co">#&gt; 3                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-91" data-line-number="91"><span class="co">#&gt; 4                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-92" data-line-number="92"><span class="co">#&gt; 5                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-93" data-line-number="93"><span class="co">#&gt; 6                    &lt;NA&gt;                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-94" data-line-number="94"><span class="co">#&gt;   source.source-orcid.host</span></a>
-<a class="sourceLine" id="cb4-95" data-line-number="95"><span class="co">#&gt; 1                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-96" data-line-number="96"><span class="co">#&gt; 2                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-97" data-line-number="97"><span class="co">#&gt; 3                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-98" data-line-number="98"><span class="co">#&gt; 4                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-99" data-line-number="99"><span class="co">#&gt; 5                     &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb4-100" data-line-number="100"><span class="co">#&gt; 6                     &lt;NA&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-73" data-line-number="73"><span class="co">#&gt;   publication-date.year.value               source.source-orcid.uri</span></a>
+<a class="sourceLine" id="cb4-74" data-line-number="74"><span class="co">#&gt; 1                        2016                                  &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-75" data-line-number="75"><span class="co">#&gt; 2                        2013                                  &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-76" data-line-number="76"><span class="co">#&gt; 3                        2013                                  &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-77" data-line-number="77"><span class="co">#&gt; 4                        2013                                  &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-78" data-line-number="78"><span class="co">#&gt; 5                        2012 https://orcid.org/0000-0001-5483-4594</span></a>
+<a class="sourceLine" id="cb4-79" data-line-number="79"><span class="co">#&gt; 6                        2012                                  &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-80" data-line-number="80"><span class="co">#&gt;   source.source-orcid.path source.source-orcid.host</span></a>
+<a class="sourceLine" id="cb4-81" data-line-number="81"><span class="co">#&gt; 1                     &lt;NA&gt;                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-82" data-line-number="82"><span class="co">#&gt; 2                     &lt;NA&gt;                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-83" data-line-number="83"><span class="co">#&gt; 3                     &lt;NA&gt;                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-84" data-line-number="84"><span class="co">#&gt; 4                     &lt;NA&gt;                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-85" data-line-number="85"><span class="co">#&gt; 5      0000-0001-5483-4594                orcid.org</span></a>
+<a class="sourceLine" id="cb4-86" data-line-number="86"><span class="co">#&gt; 6                     &lt;NA&gt;                     &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-87" data-line-number="87"><span class="co">#&gt;   publication-date.month.value publication-date.day.value</span></a>
+<a class="sourceLine" id="cb4-88" data-line-number="88"><span class="co">#&gt; 1                         &lt;NA&gt;                       &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-89" data-line-number="89"><span class="co">#&gt; 2                         &lt;NA&gt;                       &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-90" data-line-number="90"><span class="co">#&gt; 3                         &lt;NA&gt;                       &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-91" data-line-number="91"><span class="co">#&gt; 4                         &lt;NA&gt;                       &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-92" data-line-number="92"><span class="co">#&gt; 5                           08                         24</span></a>
+<a class="sourceLine" id="cb4-93" data-line-number="93"><span class="co">#&gt; 6                         &lt;NA&gt;                       &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb4-94" data-line-number="94"><span class="co">#&gt;   source.source-client-id</span></a>
+<a class="sourceLine" id="cb4-95" data-line-number="95"><span class="co">#&gt; 1                      NA</span></a>
+<a class="sourceLine" id="cb4-96" data-line-number="96"><span class="co">#&gt; 2                      NA</span></a>
+<a class="sourceLine" id="cb4-97" data-line-number="97"><span class="co">#&gt; 3                      NA</span></a>
+<a class="sourceLine" id="cb4-98" data-line-number="98"><span class="co">#&gt; 4                      NA</span></a>
+<a class="sourceLine" id="cb4-99" data-line-number="99"><span class="co">#&gt; 5                      NA</span></a>
+<a class="sourceLine" id="cb4-100" data-line-number="100"><span class="co">#&gt; 6                      NA</span></a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">orcid</th>
@@ -302,12 +315,12 @@
 <th align="left">publication-date.day</th>
 <th align="left">publication-date.media-type</th>
 <th align="left">publication-date.year.value</th>
-<th align="left">publication-date.month.value</th>
-<th align="left">publication-date.day.value</th>
-<th align="left">source.source-client-id</th>
 <th align="left">source.source-orcid.uri</th>
 <th align="left">source.source-orcid.path</th>
 <th align="left">source.source-orcid.host</th>
+<th align="left">publication-date.month.value</th>
+<th align="left">publication-date.day.value</th>
+<th align="left">source.source-client-id</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -316,26 +329,818 @@
 <td align="left">Matzinger</td>
 <td align="left"></td>
 <td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
-<td align="right">NA</td>
+<td align="right">46295084</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295084</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Impacts of combined sewer overflows on a large urban river – Understanding the effect of different management strategies</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.1016/j.watres.2016.08.017”, “2-s2.0-84986616713”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2016</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295081</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295081</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Best data handling practices in water-related research</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.2166/wpt.2013.039”, “2-s2.0-84890261205”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2013</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295078</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295078</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
-<td align="left">NULL</td>
+<td align="left">Concurrent nitrate and atrazine retention in bioreactors of straw and bark mulch at short hydraulic residence times</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.1016/j.ecoleng.2013.02.010”, “2-s2.0-84875772175”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2013</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295079</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295079</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">The influence of local calibration on the quality of UV-VIS spectrometer measurements in urban stormwater monitoring</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.2166/wpt.2013.042”, “2-s2.0-84890261164”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2013</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">5121191</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/5121191</td>
+<td align="left">0</td>
+<td align="right">1.362697e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Andreas Matzinger</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Hypolimnetic Oxygen Depletion in Eutrophic Lakes</td>
+<td align="left">list(<code>external-id-type</code> = “doi”, <code>external-id-value</code> = “10.1021/es301422r”, <code>external-id-relationship</code> = “SELF”, <code>external-id-url.value</code> = "")</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2012</td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594" class="uri">https://orcid.org/0000-0001-5483-4594</a></td>
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">orcid.org</td>
+<td align="left">08</td>
+<td align="left">24</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295089</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295089</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Hypolimnetic oxygen depletion in eutrophic lakes</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.1021/es301422r”, “2-s2.0-84866433505”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2012</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295080</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295080</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Potential for reducing nutrient input in surface waters by using nutrient filters,Potentiale für den einsatz von nährstoff-filtersystemen in Deutschland zur verringerung der nährstoffeinträge in oberflächengewässer</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.5675/HyWa_2012,1_1”, “2-s2.0-84857542546”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2012</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295077</td>
+<td align="left">CONFERENCE_PAPER</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295077</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Validation and sensitivity of a coupled model tool for CSO impact assessment in Berlin, Germany</td>
+<td align="left">list(<code>external-id-type</code> = “eid”, <code>external-id-value</code> = “2-s2.0-84894194693”, <code>external-id-url</code> = NA, <code>external-id-relationship</code> = “SELF”)</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2012</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295085</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295085</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Development of a GIS method to localize critical source areas of diffuse nitrate pollution</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.2166/wst.2011.672”, “2-s2.0-80052089733”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2011</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295087</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295087</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Evaluation of effectiveness of combined sewer overflow control measures by operational data</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.2166/wst.2011.058”, “2-s2.0-79551713372”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2011</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">5121188</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/5121188</td>
+<td align="left">0</td>
+<td align="right">1.362697e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Andreas Matzinger</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Contribution of combined sewer overflows to trace contaminant loads in urban streams</td>
+<td align="left">list(<code>external-id-type</code> = “doi”, <code>external-id-value</code> = “10.1016/j.watres.2010.06.011”, <code>external-id-relationship</code> = “SELF”, <code>external-id-url.value</code> = "")</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2010</td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594" class="uri">https://orcid.org/0000-0001-5483-4594</a></td>
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">orcid.org</td>
+<td align="left">08</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295086</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295086</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Contribution of combined sewer overflows to trace contaminant loads in urban streams</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.1016/j.watres.2010.06.011”, “2-s2.0-77955267216”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2010</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">5121192</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/5121192</td>
+<td align="left">0</td>
+<td align="right">1.362697e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Andreas Matzinger</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Hypolimnetic oxygen consumption by sediment-based reduced substances in former eutrophic lakes</td>
+<td align="left">list(<code>external-id-type</code> = “doi”, <code>external-id-value</code> = “10.4319/lo.2010.55.5.2073”, <code>external-id-relationship</code> = “SELF”, <code>external-id-url.value</code> = "")</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2010</td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594" class="uri">https://orcid.org/0000-0001-5483-4594</a></td>
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">orcid.org</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295083</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295083</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Hypolimnetic oxygen consumption by sediment-based reduced substances in former eutrophic lakes</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.4319/lo.2010.55.5.2073”, “2-s2.0-77958043923”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2010</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">5121195</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/5121195</td>
+<td align="left">0</td>
+<td align="right">1.362697e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Andreas Matzinger</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">The potential of Lake Ohrid for long-term palaeoenvironmental reconstructions</td>
+<td align="left">list(<code>external-id-type</code> = “doi”, <code>external-id-value</code> = “10.1016/j.palaeo.2007.10.015”, <code>external-id-relationship</code> = “SELF”, <code>external-id-url.value</code> = "")</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2008</td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594" class="uri">https://orcid.org/0000-0001-5483-4594</a></td>
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">orcid.org</td>
+<td align="left">03</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295090</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295090</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">The potential of Lake Ohrid for long-term palaeoenvironmental reconstructions</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.1016/j.palaeo.2007.10.015”, “2-s2.0-40149110826”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2008</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">5121189</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/5121189</td>
+<td align="left">0</td>
+<td align="right">1.362697e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Andreas Matzinger</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Effects of impoundment on nutrient availability and productivity in lakes</td>
+<td align="left">list(<code>external-id-type</code> = “doi”, <code>external-id-value</code> = “10.4319/lo.2007.52.6.2629”, <code>external-id-relationship</code> = “SELF”, <code>external-id-url.value</code> = "")</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2007</td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594" class="uri">https://orcid.org/0000-0001-5483-4594</a></td>
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">orcid.org</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295088</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295088</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Effects of impoundment on nutrient availability and productivity in lakes</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.4319/lo.2007.52.6.2629”, “2-s2.0-36749100518”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2007</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295091</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295091</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Eutrophication of ancient Lake Ohrid: Global warming amplifies detrimental effects of increased nutrient inputs</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.4319/lo.2007.52.1.0338”, “2-s2.0-34250897864”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2007</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">5121190</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/5121190</td>
+<td align="left">0</td>
+<td align="right">1.362697e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Andreas Matzinger</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Eutrophication of ancient Lake Ohrid: Global warming amplifies detrimental effects of increased nutrient inputs</td>
+<td align="left">list(<code>external-id-type</code> = “doi”, <code>external-id-value</code> = “10.4319/lo.2007.52.1.0338”, <code>external-id-relationship</code> = “SELF”, <code>external-id-url.value</code> = "")</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2007</td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594" class="uri">https://orcid.org/0000-0001-5483-4594</a></td>
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">orcid.org</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">5121193</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/5121193</td>
+<td align="left">0</td>
+<td align="right">1.362697e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Andreas Matzinger</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Sensitivity of Ancient Lake Ohrid to Local Anthropogenic Impacts and Global Warming</td>
+<td align="left">list(<code>external-id-type</code> = “doi”, <code>external-id-value</code> = “10.3394/0380-1330(2006)32[158:SOALOT]2.0.CO;2”, <code>external-id-relationship</code> = “SELF”, <code>external-id-url.value</code> = "")</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2006</td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594" class="uri">https://orcid.org/0000-0001-5483-4594</a></td>
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">orcid.org</td>
+<td align="left">03</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295082</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295082</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Sensitivity of ancient Lake Ohrid to local anthropogenic impacts and global warming</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.3394/0380-1330(2006)32[158:SOALOT]2.0.CO;2”, “2-s2.0-33645746374”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2006</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295093</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295093</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Is Lake Prespa jeopardizing the ecosystem of ancient Lake Ohrid?</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.1007/s10750-005-6427-9”, “2-s2.0-28444461482”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2006</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">5121194</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/5121194</td>
+<td align="left">0</td>
+<td align="right">1.362697e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Andreas Matzinger</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Similarities and differences in the annual temperature cycles of East German mining lakes</td>
+<td align="left">list(<code>external-id-type</code> = “doi”, <code>external-id-value</code> = “10.1016/S0075-9511(00)80058-4”, <code>external-id-relationship</code> = “SELF”, <code>external-id-url.value</code> = "")</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2000</td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594" class="uri">https://orcid.org/0000-0001-5483-4594</a></td>
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">orcid.org</td>
+<td align="left">09</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">0000-0001-5483-4594</td>
+<td align="left">Andreas</td>
+<td align="left">Matzinger</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0001-5483-4594">0000-0001-5483-4594</a></td>
+<td align="right">46295092</td>
+<td align="left">JOURNAL_ARTICLE</td>
+<td align="left">PUBLIC</td>
+<td align="left">/0000-0001-5483-4594/work/46295092</td>
+<td align="left">0</td>
+<td align="right">1.530808e+12</td>
+<td align="right">1.536155e+12</td>
+<td align="left">NA</td>
+<td align="left"><a href="https://orcid.org/client/0000-0002-5982-8983" class="uri">https://orcid.org/client/0000-0002-5982-8983</a></td>
+<td align="left">0000-0002-5982-8983</td>
+<td align="left">orcid.org</td>
+<td align="left">Scopus - Elsevier</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">Similarities and differences in the annual temperature cycles of East German mining lakes</td>
+<td align="left">list(<code>external-id-type</code> = c(“doi”, “eid”), <code>external-id-value</code> = c(“10.1016/S0075-9511(00)80058-4”, “2-s2.0-0033793580”), <code>external-id-url</code> = c(NA, NA), <code>external-id-relationship</code> = c(“SELF”, “SELF”))</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">2000</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
@@ -575,6 +1380,39 @@
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
+<td align="left">0000-0002-7436-8575</td>
+<td align="left">Wolfgang</td>
+<td align="left">Seis</td>
+<td align="left"></td>
+<td align="left"><a href="https://orcid.org/0000-0002-7436-8575">0000-0002-7436-8575</a></td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NULL</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
 <td align="left">0000-0003-0647-7726</td>
 <td align="left">Michael</td>
 <td align="left">Rustler</td>
@@ -609,7 +1447,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">0000-0003-0647-7726</td>
 <td align="left">Michael</td>
 <td align="left">Rustler</td>
@@ -637,14 +1475,14 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">2017</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 <td align="left">07</td>
 <td align="left">10</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">0000-0003-0647-7726</td>
 <td align="left">Michael</td>
 <td align="left">Rustler</td>
@@ -672,14 +1510,14 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">2016</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 <td align="left">10</td>
 <td align="left">07</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">0000-0003-0647-7726</td>
 <td align="left">Michael</td>
 <td align="left">Rustler</td>
@@ -707,14 +1545,14 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">2016</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 <td align="left">09</td>
 <td align="left">15</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">0000-0003-0647-7726</td>
 <td align="left">Michael</td>
 <td align="left">Rustler</td>
@@ -742,14 +1580,14 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">2016</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 <td align="left">09</td>
 <td align="left">06</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">0000-0003-0647-7726</td>
 <td align="left">Michael</td>
 <td align="left">Rustler</td>
@@ -777,14 +1615,14 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">2016</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 <td align="left">09</td>
 <td align="left">06</td>
 <td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">0000-0003-0647-7726</td>
 <td align="left">Michael</td>
 <td align="left">Rustler</td>
@@ -819,7 +1657,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">0000-0003-0647-7726</td>
 <td align="left">Michael</td>
 <td align="left">Rustler</td>
@@ -854,7 +1692,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">0000-0003-0647-7726</td>
 <td align="left">Michael</td>
 <td align="left">Rustler</td>
@@ -882,14 +1720,14 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">2013</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 <td align="left"><a href="https://orcid.org/0000-0003-0647-7726" class="uri">https://orcid.org/0000-0003-0647-7726</a></td>
 <td align="left">0000-0003-0647-7726</td>
 <td align="left">orcid.org</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">0000-0003-0647-7726</td>
 <td align="left">Michael</td>
 <td align="left">Rustler</td>
@@ -926,6 +1764,7 @@
 </tr>
 </tbody>
 </table>
+<!-- ## 2.4 Unknown status --><!-- ```{r} --><!-- researchers <- c("Remy, Christian",  --><!--                   "Kraus, Fabian",  --><!--                   "Menz, Christian",  --><!--                   "Stapf, Michael",  --><!--                   "Kleyböcker, Anne",  --><!--                   "Loderer, Christian") --><!-- researchers_list <- try(lapply(researchers, --><!-- function(x) { --><!--   splitted_names <- strsplit(x, ", ")[[1]] --><!--   familyname <- splitted_names[1] --><!--   givenname <- splitted_names[2] --><!--   rorcid::orcid_search(givenname, familyname) --><!-- })) --><!-- ``` --><!-- ## 2.5 Get DOIS for all publications --><!-- ```{r} --><!-- publication_dois_df <- data.table::rbindlist(publications$`external-ids.external-id`) --><!-- publications_dois <- publication_dois_df$`external-id-value`[publication_dois_df$`external-id-type`=="doi"] --><!-- doi_status <- rorcid::check_dois(publications_dois) --><!-- ### Check if all DOIs are "good" --><!-- sapply(doi_status, length) --><!-- try(expr = lapply(doi_status$good, function(x) { --><!--   #print(sprintf("DOI: %s", doi)) --><!--   knitcitations::citep(x) --><!-- }),  silent = FALSE) --><!-- ``` --><!-- ## Export all citations in .bibtex -->
 </div>
 </div>
   </div>

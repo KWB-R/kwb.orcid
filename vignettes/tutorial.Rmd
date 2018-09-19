@@ -86,8 +86,14 @@ if(!is.na(secret_path)){
 
 ### Data frame with ORCIDs currently used at KWB
 orcids <- data.frame(
-  names = c("Matzinger, Andreas", "Sonnenberg, Hauke", "Rustler, Michael"),
-  id = c("0000-0001-5483-4594", "0000-0001-9134-2871", "0000-0003-0647-7726"),
+  names = c("Matzinger, Andreas", 
+            "Sonnenberg, Hauke", 
+            "Seis, Wolfgang", 
+            "Rustler, Michael"),
+  id = c("0000-0001-5483-4594", 
+         "0000-0001-9134-2871", 
+         "0000-0002-7436-8575", 
+         "0000-0003-0647-7726"),
   stringsAsFactors =  FALSE)
 
 authors <- kwb.orcid::get_author_meta_for_orcids(orcids$id)
@@ -106,4 +112,40 @@ head(publications)
 ```{r, echo = FALSE}
 knitr::kable(publications)
 ```
+
+<!-- ## 2.4 Unknown status -->
+<!-- ```{r} -->
+
+<!-- researchers <- c("Remy, Christian",  -->
+<!--                   "Kraus, Fabian",  -->
+<!--                   "Menz, Christian",  -->
+<!--                   "Stapf, Michael",  -->
+<!--                   "Kleyböcker, Anne",  -->
+<!--                   "Loderer, Christian") -->
+
+<!-- researchers_list <- try(lapply(researchers, -->
+<!-- function(x) { -->
+<!--   splitted_names <- strsplit(x, ", ")[[1]] -->
+<!--   familyname <- splitted_names[1] -->
+<!--   givenname <- splitted_names[2] -->
+<!--   rorcid::orcid_search(givenname, familyname) -->
+<!-- })) -->
+<!-- ``` -->
+
+<!-- ## 2.5 Get DOIS for all publications -->
+
+<!-- ```{r} -->
+<!-- publication_dois_df <- data.table::rbindlist(publications$`external-ids.external-id`) -->
+<!-- publications_dois <- publication_dois_df$`external-id-value`[publication_dois_df$`external-id-type`=="doi"] -->
+<!-- doi_status <- rorcid::check_dois(publications_dois) -->
+<!-- ### Check if all DOIs are "good" -->
+<!-- sapply(doi_status, length) -->
+
+<!-- try(expr = lapply(doi_status$good, function(x) { -->
+<!--   #print(sprintf("DOI: %s", doi)) -->
+<!--   knitcitations::citep(x) -->
+<!-- }),  silent = FALSE) -->
+<!-- ``` -->
+
+<!-- ## Export all citations in .bibtex -->
 
