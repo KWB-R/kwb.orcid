@@ -18,6 +18,7 @@ create_lookup_authors_kwb <- function(orcids = get_kwb_orcids()) {
   dplyr::mutate(mail = sprintf("%s.%s@kompetenz-wasser.de",
                                tolower(.data$given),
                                tolower(.data$family))) %>%
-  dplyr::select(.data$given, .data$family, .data$mail, .data$comment)
+  dplyr::select(.data$given, .data$family, .data$mail, .data$comment) %>% 
+  dplyr::arrange(.data$comment)
   
 }
