@@ -134,18 +134,15 @@
 <a href="#get-names-and-url-for-all-orcids" class="anchor"></a>2.2 Get names and url for all ORCIDs</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"></a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="co">### Data frame with ORCIDs currently used at KWB</span></a>
-<a class="sourceLine" id="cb3-3" title="3">orcids &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb3-4" title="4">  <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">"Matzinger, Andreas"</span>, </a>
-<a class="sourceLine" id="cb3-5" title="5">            <span class="st">"Sonnenberg, Hauke"</span>, </a>
-<a class="sourceLine" id="cb3-6" title="6">            <span class="st">"Seis, Wolfgang"</span>, </a>
-<a class="sourceLine" id="cb3-7" title="7">            <span class="st">"Rustler, Michael"</span>),</a>
-<a class="sourceLine" id="cb3-8" title="8">  <span class="dt">id =</span> <span class="kw">c</span>(<span class="st">"0000-0001-5483-4594"</span>, </a>
-<a class="sourceLine" id="cb3-9" title="9">         <span class="st">"0000-0001-9134-2871"</span>, </a>
-<a class="sourceLine" id="cb3-10" title="10">         <span class="st">"0000-0002-7436-8575"</span>, </a>
-<a class="sourceLine" id="cb3-11" title="11">         <span class="st">"0000-0003-0647-7726"</span>),</a>
-<a class="sourceLine" id="cb3-12" title="12">  <span class="dt">stringsAsFactors =</span>  <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb3-13" title="13"></a>
-<a class="sourceLine" id="cb3-14" title="14">authors &lt;-<span class="st"> </span>kwb.orcid<span class="op">::</span><span class="kw">get_author_meta_for_orcids</span>(orcids<span class="op">$</span>id)</a></code></pre></div>
+<a class="sourceLine" id="cb3-3" title="3">orcids &lt;-<span class="st"> </span>kwb.orcid<span class="op">::</span><span class="kw">get_kwb_orcids</span>()</a>
+<a class="sourceLine" id="cb3-4" title="4"></a>
+<a class="sourceLine" id="cb3-5" title="5">orcids</a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt;     Andreas Matzinger      Hauke Sonnenberg         Wolfgang Seis </span></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; "0000-0001-5483-4594" "0000-0001-9134-2871" "0000-0002-7436-8575" </span></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt;       Michael Rustler </span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt; "0000-0003-0647-7726"</span></a>
+<a class="sourceLine" id="cb3-10" title="10"></a>
+<a class="sourceLine" id="cb3-11" title="11">authors &lt;-<span class="st"> </span>kwb.orcid<span class="op">::</span><span class="kw">get_author_meta_for_orcids</span>(orcids)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">orcid</th>
@@ -191,7 +188,7 @@
 <div id="get-publications-for-all-orcids" class="section level2">
 <h2 class="hasAnchor">
 <a href="#get-publications-for-all-orcids" class="anchor"></a>2.3 Get publications for all ORCIDs</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">publications &lt;-<span class="st"> </span>kwb.orcid<span class="op">::</span><span class="kw">create_publications_df_for_orcids</span>(orcids<span class="op">$</span>id)</a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">publications &lt;-<span class="st"> </span>kwb.orcid<span class="op">::</span><span class="kw">create_publications_df_for_orcids</span>(orcids)</a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="kw">head</span>(publications)</a>
 <a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt;                 orcid given_names family_name url</span></a>
 <a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; 1 0000-0001-5483-4594     Andreas   Matzinger    </span></a>

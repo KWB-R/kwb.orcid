@@ -24,7 +24,7 @@ secret_path <- NA
 if(any(exist_secret_paths)) {
   secret_path <- secret_paths[exist_secret_paths]
   
-Sys.setenv("orcid_token" = as.character(read.csv(secret_path,
+Sys.setenv("ORCID_TOKEN" = as.character(read.csv(secret_path,
                                                  stringsAsFactors = FALSE)))
 }
 ```
@@ -85,18 +85,11 @@ if(!is.na(secret_path)){
 ```{r}
 
 ### Data frame with ORCIDs currently used at KWB
-orcids <- data.frame(
-  names = c("Matzinger, Andreas", 
-            "Sonnenberg, Hauke", 
-            "Seis, Wolfgang", 
-            "Rustler, Michael"),
-  id = c("0000-0001-5483-4594", 
-         "0000-0001-9134-2871", 
-         "0000-0002-7436-8575", 
-         "0000-0003-0647-7726"),
-  stringsAsFactors =  FALSE)
+orcids <- kwb.orcid::get_kwb_orcids()
 
-authors <- kwb.orcid::get_author_meta_for_orcids(orcids$id)
+orcids
+
+authors <- kwb.orcid::get_author_meta_for_orcids(orcids)
 ```
 
 ```{r, echo = FALSE}
@@ -105,7 +98,7 @@ knitr::kable(authors)
 
 ## 2.3 Get publications for all ORCIDs 
 ```{r}
-publications <- kwb.orcid::create_publications_df_for_orcids(orcids$id)
+publications <- kwb.orcid::create_publications_df_for_orcids(orcids)
 head(publications)
 ```
 
