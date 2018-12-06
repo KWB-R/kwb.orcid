@@ -7,7 +7,7 @@
 # kwb.orcid
 
 R package for checking ORCID use at KWB. It is a wrapper for the
- R package rorcid (https://github.com/ropencsci/rorcid).
+ R package [rorcid](https://github.com/ropensci/rorcid).
 
 ## Documentation
 
