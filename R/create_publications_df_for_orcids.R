@@ -1,13 +1,29 @@
+#' Helper function: known ORCIDs of KWB scientists
+#' @return default ORCIDs of KWB scientists
+#' @export  
+#' 
+get_kwb_orcids <- function() {
+
+c("0000-0001-5483-4594", # Matzinger
+  "0000-0001-9134-2871", # Sonnenberg
+  "0000-0002-7436-8575", # Seis
+  "0000-0003-0647-7726"  # Rustler
+  )
+
+}
+
 #' ORCID: get author metadata
 #'
-#' @param orcids character vector with valid ORCIDs (default: c("0000-0001-5483-4594",
-#' "0000-0001-9134-2871", "0000-0003-0647-7726"))
+#' @param orcids character vector with valid ORCIDs (default: get_kwb_orcids())
 #' @return data.frame with valid ORCID metadata for authors
 #' @importFrom rorcid as.orcid
 #' @importFrom data.table rbindlist
 #' @export
-get_author_meta_for_orcids <- function(
-orcids = c("0000-0001-5483-4594", "0000-0001-9134-2871", "0000-0003-0647-7726")) {
+#' @examples 
+#' orcids <- get_kwb_orcids()
+#' get_author_meta_for_orcids(orcids)
+#' 
+get_author_meta_for_orcids <- function(orcids = get_kwb_orcids()) {
   author_meta_list <- lapply(orcids, function(x) {
     author_meta <- rorcid::as.orcid(x)[[x]]
 
@@ -53,16 +69,19 @@ extract_orcid_from_path <- function(path) {
 
 
 #' ORCID: get all publications (using rorcid::works())
-#' @param orcids character vector with valid ORCIDs (default: c("0000-0001-5483-4594",
-#' "0000-0001-9134-2871", "0000-0003-0647-7726"))
+#' @param orcids character vector with valid ORCIDs (default: get_kwb_orcids())
 #' @importFrom rorcid works
 #' @importFrom data.table rbindlist
 #' @importFrom dplyr left_join
 #' @importFrom stats setNames
 #' @return data.frame with all (public!) ORCID publications for provided ORCIDS
 #' @export
+#' @examples 
+#' orcids <- get_kwb_orcids()
+#' create_publications_df_for_orcids(orcids)
+#' 
 create_publications_df_for_orcids <- function(
-orcids = c("0000-0001-5483-4594", "0000-0001-9134-2871", "0000-0003-0647-7726")) 
+orcids = get_kwb_orcids()) 
   {
   
   authors_meta <- get_author_meta_for_orcids(orcids)
@@ -77,4 +96,5 @@ orcids = c("0000-0001-5483-4594", "0000-0001-9134-2871", "0000-0003-0647-7726"))
     y = publications_df,
     by = "orcid"
   )
+  return(publications_df)
 }

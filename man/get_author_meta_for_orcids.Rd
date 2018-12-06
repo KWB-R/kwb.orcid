@@ -4,16 +4,19 @@
 \alias{get_author_meta_for_orcids}
 \title{ORCID: get author metadata}
 \usage{
-get_author_meta_for_orcids(orcids = c("0000-0001-5483-4594",
-  "0000-0001-9134-2871", "0000-0003-0647-7726"))
+get_author_meta_for_orcids(orcids = get_kwb_orcids())
 }
 \arguments{
-\item{orcids}{character vector with valid ORCIDs (default: c("0000-0001-5483-4594",
-"0000-0001-9134-2871", "0000-0003-0647-7726"))}
+\item{orcids}{character vector with valid ORCIDs (default: get_kwb_orcids())}
 }
 \value{
 data.frame with valid ORCID metadata for authors
 }
 \description{
 ORCID: get author metadata
+}
+\examples{
+orcids <- get_kwb_orcids()
+get_author_meta_for_orcids(orcids)
+
 }

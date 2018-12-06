@@ -4,16 +4,19 @@
 \alias{create_publications_df_for_orcids}
 \title{ORCID: get all publications (using rorcid::works())}
 \usage{
-create_publications_df_for_orcids(orcids = c("0000-0001-5483-4594",
-  "0000-0001-9134-2871", "0000-0003-0647-7726"))
+create_publications_df_for_orcids(orcids = get_kwb_orcids())
 }
 \arguments{
-\item{orcids}{character vector with valid ORCIDs (default: c("0000-0001-5483-4594",
-"0000-0001-9134-2871", "0000-0003-0647-7726"))}
+\item{orcids}{character vector with valid ORCIDs (default: get_kwb_orcids())}
 }
 \value{
 data.frame with all (public!) ORCID publications for provided ORCIDS
 }
 \description{
 ORCID: get all publications (using rorcid::works())
+}
+\examples{
+orcids <- get_kwb_orcids()
+create_publications_df_for_orcids(orcids)
+
 }
