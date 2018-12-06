@@ -1,13 +1,15 @@
 #' Helper function: known ORCIDs of KWB scientists
 #' @return default ORCIDs of KWB scientists
 #' @export  
+#' @examples 
+#' get_kwb_orcids()
 #' 
 get_kwb_orcids <- function() {
 
-c("0000-0001-5483-4594", # Matzinger
-  "0000-0001-9134-2871", # Sonnenberg
-  "0000-0002-7436-8575", # Seis
-  "0000-0003-0647-7726"  # Rustler
+ c("Andreas Matzinger" = "0000-0001-5483-4594", 
+   "Hauke Sonnenberg" = "0000-0001-9134-2871", 
+   "Wolfgang Seis" = "0000-0002-7436-8575", 
+   "Michael Rustler" = "0000-0003-0647-7726"
   )
 
 }

@@ -12,3 +12,7 @@ default ORCIDs of KWB scientists
 \description{
 Helper function: known ORCIDs of KWB scientists
 }
+\examples{
+get_kwb_orcids()
+
+}
