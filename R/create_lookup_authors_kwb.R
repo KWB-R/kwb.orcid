@@ -5,6 +5,7 @@
 #' @export
 #' @importFrom dplyr rename mutate select
 #' @importFrom magrittr %>%
+#' @importFrom rlang .data
 #' @examples 
 #' orcids <- get_kwb_orcids()
 #' create_lookup_authors_kwb(orcids)
@@ -15,10 +16,10 @@ create_lookup_authors_kwb <- function(orcids = get_kwb_orcids()) {
   dplyr::rename("given" = .data$given_names,
                 "family" = .data$family_name,
                 "comment" = .data$orcid) %>%
-  dplyr::mutate(mail = sprintf("%s.%s@kompetenz-wasser.de",
+  dplyr::mutate(email = sprintf("%s.%s@kompetenz-wasser.de",
                                tolower(.data$given),
                                tolower(.data$family))) %>%
-  dplyr::select(.data$given, .data$family, .data$mail, .data$comment) %>% 
+  dplyr::select(.data$given, .data$family, .data$email, .data$comment) %>% 
   dplyr::arrange(.data$comment)
   
 }
