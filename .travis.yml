@@ -5,7 +5,7 @@ r:
 sudo: required
 cache: packages
 r_packages:
-- devtools
+- remotes
 - covr
 after_success:
 - Rscript -e 'covr::codecov()'
