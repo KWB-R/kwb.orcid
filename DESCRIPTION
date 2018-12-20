@@ -1,5 +1,5 @@
 Package: kwb.orcid
-Version: 0.1.0.9000
+Version: 0.0.0.9000
 Title: R Package for Checking Orcid Use at KWB
 Description: R package for checking ORCID use at KWB. It is a wrapper for the
  R package rorcid (https://github.com/ropencsci/rorcid).
