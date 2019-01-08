@@ -8,6 +8,9 @@ authors:
 template:
   params:
     bootswatch: cerulean
+    docsearch:
+      api_key: a87888564f3fa8fc9660cda1082be8b4
+      index_name: kwb_orcid
 development:
   mode: auto
 
