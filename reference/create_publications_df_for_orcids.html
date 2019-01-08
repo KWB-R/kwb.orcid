@@ -29,6 +29,12 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
 
 <meta property="og:title" content="ORCID: get all publications (using rorcid::works()) — create_publications_df_for_orcids" />
 
@@ -103,6 +109,12 @@
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -244,8 +256,8 @@
 #&gt; 10 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594) 46295087
 #&gt; 11 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594)  5121188
 #&gt; 12 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594) 46295086
-#&gt; 13 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594) 46295083
-#&gt; 14 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594)  5121192
+#&gt; 13 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594)  5121192
+#&gt; 14 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594) 46295083
 #&gt; 15 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594)  5121195
 #&gt; 16 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594) 46295090
 #&gt; 17 [0000-0001-5483-4594](https://orcid.org/0000-0001-5483-4594)  5121189
@@ -288,8 +300,8 @@
 #&gt; 10  JOURNAL_ARTICLE     PUBLIC /0000-0001-5483-4594/work/46295087             0
 #&gt; 11  JOURNAL_ARTICLE     PUBLIC  /0000-0001-5483-4594/work/5121188             0
 #&gt; 12  JOURNAL_ARTICLE     PUBLIC /0000-0001-5483-4594/work/46295086             0
-#&gt; 13  JOURNAL_ARTICLE     PUBLIC /0000-0001-5483-4594/work/46295083             0
-#&gt; 14  JOURNAL_ARTICLE     PUBLIC  /0000-0001-5483-4594/work/5121192             0
+#&gt; 13  JOURNAL_ARTICLE     PUBLIC  /0000-0001-5483-4594/work/5121192             0
+#&gt; 14  JOURNAL_ARTICLE     PUBLIC /0000-0001-5483-4594/work/46295083             0
 #&gt; 15  JOURNAL_ARTICLE     PUBLIC  /0000-0001-5483-4594/work/5121195             0
 #&gt; 16  JOURNAL_ARTICLE     PUBLIC /0000-0001-5483-4594/work/46295090             0
 #&gt; 17  JOURNAL_ARTICLE     PUBLIC  /0000-0001-5483-4594/work/5121189             0
@@ -332,8 +344,8 @@
 #&gt; 10       1.530808e+12             1.536155e+12                  NA
 #&gt; 11       1.362697e+12             1.536155e+12                  NA
 #&gt; 12       1.530808e+12             1.536155e+12                  NA
-#&gt; 13       1.530808e+12             1.536155e+12                  NA
-#&gt; 14       1.362697e+12             1.536155e+12                  NA
+#&gt; 13       1.362697e+12             1.536155e+12                  NA
+#&gt; 14       1.530808e+12             1.536155e+12                  NA
 #&gt; 15       1.362697e+12             1.536155e+12                  NA
 #&gt; 16       1.530808e+12             1.536155e+12                  NA
 #&gt; 17       1.362697e+12             1.536155e+12                  NA
@@ -376,8 +388,8 @@
 #&gt; 10  https://orcid.org/client/0000-0002-5982-8983          0000-0002-5982-8983
 #&gt; 11                                          &lt;NA&gt;                         &lt;NA&gt;
 #&gt; 12  https://orcid.org/client/0000-0002-5982-8983          0000-0002-5982-8983
-#&gt; 13  https://orcid.org/client/0000-0002-5982-8983          0000-0002-5982-8983
-#&gt; 14                                          &lt;NA&gt;                         &lt;NA&gt;
+#&gt; 13                                          &lt;NA&gt;                         &lt;NA&gt;
+#&gt; 14  https://orcid.org/client/0000-0002-5982-8983          0000-0002-5982-8983
 #&gt; 15                                          &lt;NA&gt;                         &lt;NA&gt;
 #&gt; 16  https://orcid.org/client/0000-0002-5982-8983          0000-0002-5982-8983
 #&gt; 17                                          &lt;NA&gt;                         &lt;NA&gt;
@@ -420,8 +432,8 @@
 #&gt; 10                    orcid.org                       Scopus - Elsevier
 #&gt; 11                         &lt;NA&gt;                       Andreas Matzinger
 #&gt; 12                    orcid.org                       Scopus - Elsevier
-#&gt; 13                    orcid.org                       Scopus - Elsevier
-#&gt; 14                         &lt;NA&gt;                       Andreas Matzinger
+#&gt; 13                         &lt;NA&gt;                       Andreas Matzinger
+#&gt; 14                    orcid.org                       Scopus - Elsevier
 #&gt; 15                         &lt;NA&gt;                       Andreas Matzinger
 #&gt; 16                    orcid.org                       Scopus - Elsevier
 #&gt; 17                         &lt;NA&gt;                       Andreas Matzinger
@@ -552,8 +564,8 @@
 #&gt; 10                                                                                                                                                                  doi, eid, 10.2166/wst.2011.058, 2-s2.0-79551713372, NA, NA, SELF, SELF
 #&gt; 11                                                                                                                                                                                               doi, 10.1016/j.watres.2010.06.011, SELF, 
 #&gt; 12                                                                                                                                                          doi, eid, 10.1016/j.watres.2010.06.011, 2-s2.0-77955267216, NA, NA, SELF, SELF
-#&gt; 13                                                                                                                                                             doi, eid, 10.4319/lo.2010.55.5.2073, 2-s2.0-77958043923, NA, NA, SELF, SELF
-#&gt; 14                                                                                                                                                                                                  doi, 10.4319/lo.2010.55.5.2073, SELF, 
+#&gt; 13                                                                                                                                                                                                  doi, 10.4319/lo.2010.55.5.2073, SELF, 
+#&gt; 14                                                                                                                                                             doi, eid, 10.4319/lo.2010.55.5.2073, 2-s2.0-77958043923, NA, NA, SELF, SELF
 #&gt; 15                                                                                                                                                                                               doi, 10.1016/j.palaeo.2007.10.015, SELF, 
 #&gt; 16                                                                                                                                                          doi, eid, 10.1016/j.palaeo.2007.10.015, 2-s2.0-40149110826, NA, NA, SELF, SELF
 #&gt; 17                                                                                                                                                                                                  doi, 10.4319/lo.2007.52.6.2629, SELF, 
@@ -640,8 +652,8 @@
 #&gt; 10                        2011                                  &lt;NA&gt;
 #&gt; 11                        2010 https://orcid.org/0000-0001-5483-4594
 #&gt; 12                        2010                                  &lt;NA&gt;
-#&gt; 13                        2010                                  &lt;NA&gt;
-#&gt; 14                        2010 https://orcid.org/0000-0001-5483-4594
+#&gt; 13                        2010 https://orcid.org/0000-0001-5483-4594
+#&gt; 14                        2010                                  &lt;NA&gt;
 #&gt; 15                        2008 https://orcid.org/0000-0001-5483-4594
 #&gt; 16                        2008                                  &lt;NA&gt;
 #&gt; 17                        2007 https://orcid.org/0000-0001-5483-4594
@@ -684,8 +696,8 @@
 #&gt; 10                     &lt;NA&gt;                     &lt;NA&gt;
 #&gt; 11      0000-0001-5483-4594                orcid.org
 #&gt; 12                     &lt;NA&gt;                     &lt;NA&gt;
-#&gt; 13                     &lt;NA&gt;                     &lt;NA&gt;
-#&gt; 14      0000-0001-5483-4594                orcid.org
+#&gt; 13      0000-0001-5483-4594                orcid.org
+#&gt; 14                     &lt;NA&gt;                     &lt;NA&gt;
 #&gt; 15      0000-0001-5483-4594                orcid.org
 #&gt; 16                     &lt;NA&gt;                     &lt;NA&gt;
 #&gt; 17      0000-0001-5483-4594                orcid.org
@@ -830,6 +842,23 @@
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: 'a87888564f3fa8fc9660cda1082be8b4',
+    indexName: 'kwb_orcid',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
   </body>
 </html>
