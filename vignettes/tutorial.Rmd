@@ -17,6 +17,8 @@ knitr::opts_chunk$set(
 ```
 ```{r eval = TRUE, echo=FALSE, warning=FALSE, message=FALSE}
 
+if (!identical(Sys.getenv("TRAVIS"), "true")) {
+
 secret_paths <- c("secret.csv")
 exist_secret_paths <- file.exists(secret_paths)
 secret_path <- NA
@@ -26,6 +28,7 @@ if(any(exist_secret_paths)) {
   
 Sys.setenv("ORCID_TOKEN" = as.character(read.csv(secret_path,
                                                  stringsAsFactors = FALSE)))
+}
 }
 ```
 # 1 Install R Packages
