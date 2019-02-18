@@ -17,12 +17,13 @@ knitr::opts_chunk$set(
 ```
 ```{r eval = TRUE, echo=FALSE, warning=FALSE, message=FALSE}
 
-if (!identical(Sys.getenv("TRAVIS"), "true")) {
 
 secret_paths <- c("secret.csv")
 exist_secret_paths <- file.exists(secret_paths)
 secret_path <- NA
 
+if (!identical(Sys.getenv("TRAVIS"), "true")) {
+  
 if(any(exist_secret_paths)) {
   secret_path <- secret_paths[exist_secret_paths]
   
