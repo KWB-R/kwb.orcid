@@ -21,6 +21,7 @@ knitr::opts_chunk$set(
 secret_paths <- c("secret.csv")
 exist_secret_paths <- file.exists(secret_paths)
 secret_path <- NA
+is_travis_and_has_orcid_token <- FALSE 
 
 if (!identical(Sys.getenv("TRAVIS"), "true")) {
   
