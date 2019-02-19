@@ -30,6 +30,9 @@ if(any(exist_secret_paths)) {
 Sys.setenv("ORCID_TOKEN" = as.character(read.csv(secret_path,
                                                  stringsAsFactors = FALSE)))
 }
+
+  is_travis_and_has_orcid_token <-  Sys.getenv("ORCID_TOKEN") != ""
+ 
 }
 ```
 # 1 Install R Packages
@@ -77,7 +80,7 @@ Sys.setenv("orcid_token" = "my_secret_orcid_token")
 ```
 
 ```{r echo = FALSE}
-if(!is.na(secret_path)){
+if (is_travis_and_has_orcid_token || !is.na(secret_path)) {
   knitr::opts_chunk$set(eval=TRUE, message=FALSE, echo=TRUE)
 } else {
  knitr::opts_chunk$set(eval=FALSE, message=FALSE, echo=TRUE)
