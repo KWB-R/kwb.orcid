@@ -18,20 +18,19 @@ knitr::opts_chunk$set(
 ```{r eval = TRUE, echo=FALSE, warning=FALSE, message=FALSE}
 
 
-secret_paths <- c("secret.csv")
-exist_secret_paths <- file.exists(secret_paths)
 secret_path <- NA
-is_travis_and_has_orcid_token <- Sys.getenv("ORCID_token") != ""
 
-is_not_travis <- !identical(Sys.getenv("TRAVIS"), "true")
 
-if (is_not_travis) {
+is_travis <- identical(Sys.getenv("TRAVIS"), "true")
+
+secret_path <- "secret.csv"
+exist_secret_path <- file.exists(secret_path)
+
+if (is_not_travis && exist_secret_path) {
   
-if(any(exist_secret_paths)) {
-  secret_path <- secret_paths[exist_secret_paths]
+secret_path <- secret_paths[exist_secret_paths]
   
-Sys.setenv("ORCID_TOKEN" = as.character(read.csv(secret_path,
-                                                 stringsAsFactors = FALSE)))
+Sys.setenv("ORCID_TOKEN" = as.character(read.csv(secret_path, stringsAsFactors = FALSE)))
 }
 
 }
@@ -41,15 +40,17 @@ Sys.setenv("ORCID_TOKEN" = as.character(read.csv(secret_path,
 First you need to install the following required R packages:
 
 ```{r, eval = FALSE}
-installed_packages <- rownames(installed.packages())
-
 ### For installing an R package from Github
-if(!"devtools" %in% installed_packages) {
-  install.packages("devtools", repos = "https://cloud.r-project.org")
-}
+
+#Sys.setenv(GITHUB_PAT = "mysecret_access_token")
+
+install.packages("remotes", repos = "https://cloud.r-project.org")
+remotes::install_github("r-lib/remotes@18c7302637053faf21c5b025e1e9243962db1bdc")
+
 ### R package for checking ORCID use at KWB
-if(!"kwb.orcid" %in% installed_packages) {
-  devtools::install_github("KWB-R/kwb.orcid")
+
+remotes::install_github("KWB-R/kwb.orcid")
+
 }
 
 ```
