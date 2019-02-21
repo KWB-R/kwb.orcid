@@ -33,7 +33,7 @@ secret_path <- secret_paths[exist_secret_paths]
 Sys.setenv("ORCID_TOKEN" = as.character(read.csv(secret_path, stringsAsFactors = FALSE)))
 }
 
-}
+
 ```
 # 1 Install R Packages
 
