@@ -5,13 +5,14 @@
 #' get_kwb_orcids()
 #' 
 get_kwb_orcids <- function() {
-
- c("Andreas Matzinger" = "0000-0001-5483-4594", 
-   "Hauke Sonnenberg" = "0000-0001-9134-2871", 
-   "Wolfgang Seis" = "0000-0002-7436-8575", 
-   "Michael Rustler" = "0000-0003-0647-7726"
+  
+  c("Andreas Matzinger" = "0000-0001-5483-4594", 
+    "Hauke Sonnenberg" = "0000-0001-9134-2871", 
+    "Wolfgang Seis" = "0000-0002-7436-8575", 
+    "Christoph Sprenger" = "0000-0002-0178-6645",
+    "Michael Rustler" = "0000-0003-0647-7726"
   )
-
+  
 }
 
 #' ORCID: get author metadata
