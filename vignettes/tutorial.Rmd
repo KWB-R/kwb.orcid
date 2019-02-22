@@ -23,14 +23,19 @@ secret_path <- NA
 
 is_travis <- identical(Sys.getenv("TRAVIS"), "true")
 
+has_token <- Sys.getenv("ORCID_TOKEN")!=""
+
+is_travis_and_has_orcid_token <- is_travis && has_token
+
+if (!is_travis) {
 secret_path <- "secret.csv"
 exist_secret_path <- file.exists(secret_path)
+if(exist_secret_path) {
+  
+  orcid_token <- as.character(read.csv(secret_path, stringsAsFactors = FALSE))
 
-if (is_not_travis && exist_secret_path) {
-  
-secret_path <- secret_paths[exist_secret_paths]
-  
-Sys.setenv("ORCID_TOKEN" = as.character(read.csv(secret_path, stringsAsFactors = FALSE)))
+  Sys.setenv("ORCID_TOKEN" = orcid_token)
+}
 }
 
 
@@ -76,7 +81,7 @@ rorcid::orcid_auth()
 
 ### To make this token available in the next R session make sure to set the
 ### token via Sys.setenv() as shown below
-Sys.setenv("orcid_token" = "my_secret_orcid_token")
+Sys.setenv("ORCID_TOKEN" = "my_secret_orcid_token")
 
 
 ```
@@ -108,7 +113,8 @@ knitr::kable(authors)
 ## 2.3 Get publications for all ORCIDs 
 ```{r}
 publications <- kwb.orcid::create_publications_df_for_orcids(orcids)
-head(publications)
+publications
+#jsonlite::write_json(publications)
 ```
 
 ```{r, echo = FALSE}
