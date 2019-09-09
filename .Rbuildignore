@@ -9,5 +9,6 @@
 ^README\.md$
 ^\.httr-oauth$
 kwb.orcid.Rproj
-^index\.Rmd$
+^index\.md$
 ^.*\.Rproj$
+^\.travis\.yml$
