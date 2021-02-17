@@ -6,11 +6,13 @@
 #' 
 get_kwb_orcids <- function() {
   
-  c("Andreas Matzinger" = "0000-0001-5483-4594", 
-    "Hauke Sonnenberg" = "0000-0001-9134-2871", 
-    "Wolfgang Seis" = "0000-0002-7436-8575", 
+  c("Andreas Matzinger" = "0000-0001-5483-4594",
     "Christoph Sprenger" = "0000-0002-0178-6645",
-    "Michael Rustler" = "0000-0003-0647-7726"
+    "Daniel Wicke" = "0000-0002-5722-5433",
+    "Hauke Sonnenberg" = "0000-0001-9134-2871", 
+    "Michael Rustler" = "0000-0003-0647-7726",
+    "Nicolas Caradot" = "0000-0002-5252-4880", 
+    "Wolfgang Seis" = "0000-0002-7436-8575"
   )
   
 }
