@@ -35,4 +35,4 @@ Suggests:
 URL: https://github.com/KWB-R/kwb.orcid
 BugReports: https://github.com/KWB-R/kwb.orcid/issues
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
