@@ -12,3 +12,4 @@ kwb.orcid.Rproj
 ^index\.md$
 ^.*\.Rproj$
 ^\.travis\.yml$
+^\.github$
